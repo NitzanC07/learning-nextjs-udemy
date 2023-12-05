@@ -1,13 +1,22 @@
-import styles from './page.module.css'
+function HomePage(props) {
 
-export default function Home() {
+  const { products } = props;
+
   return (
-    <main className={styles.main}>
-      <ul>
-        <li>Product 1</li>
-        <li>Product 2</li>
-        <li>Product 3</li>
-      </ul>
-    </main>
+    <ul>
+      <li>Product 1</li>
+      <li>Product 2</li>
+      <li>Product 3</li>
+    </ul>
   )
 }
+
+export async function getStaticProps() {
+  return {
+    props: {
+      products: [{id: "p1", title: "Product 1"}]
+    }
+  }
+}
+
+export default HomePage;
