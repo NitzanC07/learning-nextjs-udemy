@@ -1,6 +1,11 @@
 import path from 'path';
 import fs from 'fs/promises'; 
 
+/** 
+ * * ISR - Incremental Static Regeneration page component.
+ * * With both functions getStaticProps and getStaticPaths to define that page. 
+ */
+
 import { Fragment } from "react";
 
 function ProductDetailsPage(props) {
