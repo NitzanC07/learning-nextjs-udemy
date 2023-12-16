@@ -1,5 +1,11 @@
 import path from 'path';
 import fs from 'fs/promises'; // Using file system to manage read files.
+import Link from 'next/link';
+
+/**
+ * * SSG - Static Site Generation page component. 
+ * * With the function getStaticProps in definition for this page. 
+ */
 
 function HomePage(props) {
   const { products } = props;
@@ -9,7 +15,9 @@ function HomePage(props) {
       <ul>
         {
           products.map(product => (
-            <li key={product.id}>{product.title}</li>
+            <li key={product.id}>
+              <Link href={`/products/${product.id}`}>{product.title}</Link>
+            </li>
           ))
         }
       </ul>
@@ -25,7 +33,7 @@ export async function getStaticProps() {
 
   return {
     props: { products: data.products },
-    revalidate: 5
+    revalidate: 15
   }
 }
 
