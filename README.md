@@ -1,6 +1,6 @@
 # Learning Next.js
 
-Course: Next.js & React - The Complete Guide by Maximilian Schwarzmuller
+Course: Next.js & React - The Complete Guide (2023) by Maximilian Schwarzmuller
 
 - [Link to the course](https://www.udemy.com/course/nextjs-react-the-complete-guide/?kw=Next.js&src=sac)
 
