@@ -10,11 +10,11 @@ Course: Next.js & React - The Complete Guide by Maximilian Schwarzmuller
 - [x] Pages & file-based routing.
 - [x] Page pre-rendering & data fetching.
 - [x] Optimizing Next.js applications.
-- [] Backend code with API routes in Next.js.
-- [] App wide State (React context).
-- [] Building a full stack web application with Next.js.
-- [] Deploying Next.js applications.
-- [] Authentication in Next.js.
+- [ ] Backend code with API routes in Next.js.
+- [ ] App wide State (React context).
+- [ ] Building a full stack web application with Next.js.
+- [ ] Deploying Next.js applications.
+- [ ] Authentication in Next.js.
 
 ## Documents, guides and other relevant links
 
