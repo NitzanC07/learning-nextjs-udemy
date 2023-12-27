@@ -1,12 +1,1 @@
-[
-  {
-    "id": "Wed Dec 27 2023 13:32:46 GMT+0200 (Israel Standard Time)",
-    "email": "nitzan@nitzan.com",
-    "text": "Hello world!"
-  },
-  {
-    "id": "Wed Dec 27 2023 13:33:29 GMT+0200 (Israel Standard Time)",
-    "email": "rony@rony.com",
-    "text": "Is it work?"
-  }
-]
+[{"id":"Wed Dec 27 2023 13:32:46 GMT+0200 (Israel Standard Time)","email":"nitzan@nitzan.com","text":"Hello world!"},{"id":"Wed Dec 27 2023 13:33:29 GMT+0200 (Israel Standard Time)","email":"rony@rony.com","text":"Is it work?"},{"id":"Wed Dec 27 2023 18:39:28 GMT+0200 (Israel Standard Time)","email":"nitzan@test.com","text":"Is this good enough?"},{"id":"Wed Dec 27 2023 19:01:20 GMT+0200 (Israel Standard Time)","email":"nitzan@test.com","text":"Is this good enough?"},{"id":"Wed Dec 27 2023 19:22:40 GMT+0200 (Israel Standard Time)","email":"gal@test.com","text":"Very good!"}]
