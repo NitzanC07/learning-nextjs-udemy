@@ -1,3 +1,4 @@
+import { MongoClient } from "mongodb";
 import fs from "fs";
 import path from "path";
 
@@ -11,7 +12,7 @@ export function extractFeedback(filePath) {
   return data;
 }
 
-function handler(req, res) {
+async function handler(req, res) {
   /**
    * ! הפונקציה מקבלת בקשות מצד הלקוח ובודקת קודם כל אם זו בקשה לכתיבת נתונים (#1), אם כן
    * ! אז היא אוספת את המידע שהיא מקבלת מגוף הבקשה (#2), מארגנת אותם במבנה מסודר
@@ -23,20 +24,35 @@ function handler(req, res) {
    */
   // * #1
   if (req.method === "POST") {
+
+    // ! בקטע הקוד הזה מתבצע איסוף נתונים מתוך בקשת הלקוח.
     const email = req.body.email; // * #2
     const feedbackText = req.body.text; // * #2
 
+    // ! בקטע הקוד המידע שהתקבל מהבקשה מאורגן באובייקט מסודר, כיחידת מידע שלמה.
     const newFeedback = {
       id: new Date().toString(), // * #3
       email: email,
       text: feedbackText,
     };
 
+    // ! בקטע הקוד הזה מתבצעת כתיבה של הנתונים שהתקבלו בבקשה לתוך הקובץ שיצרנו בתוך הפרויקט.
     const filePath = buildFeedbackPath(); // * #4
     const data = extractFeedback(filePath); // * #5
     data.push(newFeedback); // * #6
     fs.writeFileSync(filePath, JSON.stringify(data)); // * #7
+    
+    // ! בקטע הקוד הבא נעשית שליחת של המידע למאגר נתונים של מונגו די בי, מחוץ לאפליקציה.
+    const client = await MongoClient.connect('mongodb+srv://nitzancohen:jqRbYV7bsBPdi1pS@clusternitzanlearn.nwagouk.mongodb.net/')
+    
+    const db = client.db()
+    
+    await db.collection("feedbacks").insertOne(newFeedback)
+    client.close()
+    
+    // ! שליחת תגובה מהשרת ללקוח שהמידע התקבל.
     res.status(201).json({ message: "Success", feedback: newFeedback }); // * #8
+
   } else {
     /**
      * ! אם לא, כלומר בקשת צד הלקוח היא כדי לקרוא נתונים, אז היא צריכה לגשת לקובץ (#1)

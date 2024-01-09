@@ -1,5 +1,3 @@
-import path from "path";
-import Link from "next/link";
 import { useRef, useState } from "react";
 
 /**

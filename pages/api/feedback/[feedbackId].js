@@ -12,10 +12,12 @@ function handler(req, res) {
   const feedbackId = req.query.feedbackId; // #1
   const filePath = buildFeedbackPath(); // #2
   const feedbackData = extractFeedback(filePath); // #2
+
   // #3
   const selectedFeedback = feedbackData.find(
     (feedback) => feedback.id === feedbackId
   );
+
   res.status(200).json({ feedback: selectedFeedback });
 }
 
