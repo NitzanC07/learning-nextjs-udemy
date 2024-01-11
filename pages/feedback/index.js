@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { buildFeedbackPath, extractFeedback } from "../api/feedback";
+// import { MongoClient } from "mongodb";
 
 /**
  * ! הפונקציה הזאת היא למעשה משתמשת בהכנה מראש של העמוד, מושכת המידע ומכינה את העמוד
@@ -16,23 +17,27 @@ function FeedbackPage(props /* #2 */) {
   function loadFeedbackHandler(id) {
     fetch(`/api/feedback/${id}`) // #5
       .then((response) => response.json())
-      .then((data) => setFeedbackData(data.feedback)); // #6
+      .then((data) => 
+        setFeedbackData(data.feedback)
+        ); // #6
   }
 
   return (
     <ul>
       {feedbackData && <p>{feedbackData.email}</p>}
       {/** #3 */}
-      {props.feedbackItems.map((item) => (
-        <li key={item.id}>
-          {item.text}
-          <button onClick={() => loadFeedbackHandler(item.id)}>
-            {" "}
-            {/* #4 */}
-            Show details
-          </button>
-        </li>
-      ))}
+      {
+          props.feedbackItems.map((item) => (
+          <li key={item.id}>
+            {item.text}
+            <button onClick={() => loadFeedbackHandler(item.id)}>
+              {" "}
+              {/* #4 */}
+              Show details
+            </button>
+          </li>
+        ))
+      }
     </ul>
   );
 }
@@ -41,6 +46,12 @@ function FeedbackPage(props /* #2 */) {
 export async function getStaticProps() {
   const filePath = buildFeedbackPath();
   const data = extractFeedback(filePath);
+
+  // const client = await MongoClient.connect('mongodb+srv://nitzancohen:jqRbYV7bsBPdi1pS@clusternitzanlearn.nwagouk.mongodb.net/');
+  // const db = client.db();
+  // const allFeedbackDB = await db.collection('feedbacks').find().toArray();
+  // console.log(allFeedbackDB);
+
   return {
     props: { feedbackItems: data },
   };

@@ -47,6 +47,8 @@ function HomePage(props) {
       .then((data) => setFeedbackItems(data.feedback));
   }
 
+  console.log();
+
   return (
     <main>
       <h1>Home Pgae</h1>
@@ -65,7 +67,7 @@ function HomePage(props) {
       <button onClick={loadFeedbackHandler}>Load feedback</button> {/* #1 */}
       <ul>
         {feedbackItems.map((item) => (
-          <li key={item.id}>{item.text}</li>
+          <li key={item.feedbackId}>{item.text}</li>
         ))}
       </ul>
     </main>
